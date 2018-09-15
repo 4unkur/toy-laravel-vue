@@ -35,23 +35,24 @@
     </div>
 </section>
 <div id="app" class="container">
-    <form method="post" action="{{ route('projects.store') }}" class="mb-10" @submit.prevent="onSubmit">
+    <form method="post" action="{{ route('projects.store') }}" class="mb-10" @submit.prevent="onSubmit"
+          @keydown="errors.clear($event.target.name)">
         <div class="field">
             <label class="label">Name</label>
             <div class="control">
                 <input type="text" name="name" class="input" v-model="name">
             </div>
-            <p class="help is-danger"></p>
+            <p class="help is-danger" v-show="errors.has('name')" v-text="errors.get('name')"></p>
         </div>
         <div class="field">
             <label class="label">Description</label>
             <div class="control">
                 <input type="text" name="description" class="input" v-model="description">
             </div>
-            <p class="help is-danger"></p>
+            <p class="help is-danger" v-show="errors.has('description')" v-text="errors.get('description')"></p>
         </div>
         <div>
-            <button class="button is-primary" type="submit">Create</button>
+            <button class="button is-primary" type="submit" :disabled="errors.any()">Create</button>
         </div>
     </form>
 
