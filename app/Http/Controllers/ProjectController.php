@@ -9,12 +9,14 @@ class ProjectController extends Controller
 {
     public function index()
     {
+        $projects = Project::all();
+
         return view('welcome')->with(compact('projects'));
     }
 
     public function store(Request $request)
     {
-        $validated = $this->validate($request, [
+        $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
         ]);
@@ -23,5 +25,7 @@ class ProjectController extends Controller
         $project->name = $request->input('name');
         $project->description = $request->input('description');
         $project->save();
+
+        return ['message' => 'Project created'];
     }
 }
