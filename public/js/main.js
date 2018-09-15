@@ -5,8 +5,10 @@ const app = new Vue({
         description: ''
     },
     methods: {
-        onSubmit(event) {
-
+        onSubmit() {
+            axios.post('/projects/store', this.$data)
+                .then(response => console.log(response))
+                .catch(error => console.log(error));
         }
     }
 })

@@ -12,7 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('projects');
 });
 
-Route::post('/', 'ProjectController@store');
+Route::get('projects', 'ProjectController@index')->name('projects');
+
+Route::post('projects/store', 'ProjectController@store')->name('projects.store');

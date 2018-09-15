@@ -35,7 +35,7 @@
     </div>
 </section>
 <div id="app" class="container">
-    <form method="post" class="mb-10" @submit.prevent="onSubmit">
+    <form method="post" action="{{ route('projects.store') }}" class="mb-10" @submit.prevent="onSubmit">
         <div class="field">
             <label class="label">Name</label>
             <div class="control">
@@ -51,7 +51,7 @@
             <p class="help is-danger"></p>
         </div>
         <div>
-            <button class="button is-primary">Create</button>
+            <button class="button is-primary" type="submit">Create</button>
         </div>
     </form>
 
@@ -61,7 +61,7 @@
         @else
             <ul>
                 @foreach ($projects as $project)
-                    <li>{{ $project.name }}</li>
+                    <li>{{ $project->name }}</li>
                 @endforeach
             </ul>
         @endif
